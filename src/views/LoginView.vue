@@ -54,11 +54,11 @@ onMounted(async () => {
 });
 
 const userSchema = z.object({
-    email: z.string().email({ message: "error email" }),
+    email: z.string().email({ message: "khas ykon email !" }),
     password: z
         .string()
-        .min(8, { message: "passsword 9al mn 8" })
-        .max(20, { message: "passsword kter mn 20" }),
+        .min(8, { message: "passsword 9al mn 8 !" })
+        .max(30, { message: "passsword kter mn 30 !" }),
 });
 
 const data = reactive({
@@ -79,14 +79,14 @@ const submit = () => {
             hideProgressBar: true,
         });
     } else {
-        toast.error("Error Notification !", {
+        
+        result.error.issues.forEach((e) => {
+            toast.error(e.message, {
             position: toast.POSITION.TOP_RIGHT,
             theme: "dark",
             autoClose: 3000,
             hideProgressBar: true,
         });
-        result.error.issues.forEach((e) => {
-            console.log(e.message);
         });
     }
 };
