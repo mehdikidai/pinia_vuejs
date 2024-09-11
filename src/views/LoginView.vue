@@ -28,15 +28,30 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive, onMounted ,ref} from "vue";
 import { z } from "zod";
 import { useUserStore } from "@/stores/user";
 import { storeToRefs } from "pinia";
 import { toast } from "vue3-toastify";
 
+import { UseAxios } from "@/api";
+
 const storeUser = useUserStore();
 
 const { email, userName } = storeToRefs(storeUser);
+
+const dataApi = ref([])
+
+onMounted(async () => {
+
+    const res = await UseAxios.get("/users");
+
+    if (res.status === 200) {
+        //console.log(res.data);
+        dataApi.value = res.data
+    }
+
+});
 
 const userSchema = z.object({
     email: z.string().email({ message: "error email" }),
@@ -53,6 +68,7 @@ const data = reactive({
 
 const submit = () => {
     const result = userSchema.safeParse(data);
+
     if (result.success) {
         storeUser.setUser(data.email);
         toast("Hello! Wow so easy!", {
