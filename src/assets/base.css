@@ -1,0 +1,48 @@
+/* color palette from <https://github.com/vuejs/theme> */
+
+:root {
+    --white: #1a1d1f;
+    --white_2: #333;
+    --black: #fff;
+    --main: #0c68e9;
+    --gray: #111315;
+    --border-color: rgba(255, 255, 255, 0.4);
+    --toastify-color-dark: #333637;
+    --toastify-color-progress-error:#ff6867;
+    --toastify-color-error:var(--toastify-color-progress-error)
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+    /*border: 1px solid navy;*/
+}
+
+input:active,
+input:focus {
+    outline: none;
+    border: none;
+}
+
+[data-testid="toast-content"]{
+    font-size: 14px;
+}
+.Toastify__toast{
+    border-radius: 0;
+}
+.Toastify__toast-body {
+	margin: auto 0;
+	padding: 10px;
+}
+
+body {
+    min-height: 100vh;
+    background: #1a1d1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
