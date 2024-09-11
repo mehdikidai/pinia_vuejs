@@ -2,6 +2,7 @@
     <div class="dataUser">
         <span>{{ email }}</span>
         <span>{{ userName }}</span>
+        <button @click="storeUser.resetUser" v-if="showBtnRest">Reset</button>
     </div>
     <div class="container">
         <h1>login</h1>
@@ -22,13 +23,13 @@
                     />
                 </label>
             </div>
-            <button>Log In</button>
+            <button @click="submit">Log In</button>
         </form>
     </div>
 </template>
 
 <script setup>
-import { reactive, onMounted ,ref} from "vue";
+import { reactive, onMounted ,ref } from "vue";
 import { z } from "zod";
 import { useUserStore } from "@/stores/user";
 import { storeToRefs } from "pinia";
@@ -38,9 +39,10 @@ import { UseAxios } from "@/api";
 
 const storeUser = useUserStore();
 
-const { email, userName } = storeToRefs(storeUser);
+const { email, userName , showBtnRest } = storeToRefs(storeUser);
 
 const dataApi = ref([])
+
 
 onMounted(async () => {
 
@@ -90,6 +92,8 @@ const submit = () => {
         });
     }
 };
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -103,6 +107,15 @@ const submit = () => {
     span {
         color: #fff;
         font-size: 16px;
+    }
+    button{
+        border: none;
+        cursor: pointer;
+        background: var(--main);
+        height: 34px;
+        margin-top: 20px;
+        color: #fff;
+        font-size: 14px;
     }
 }
 .container {
